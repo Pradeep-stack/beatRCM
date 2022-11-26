@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import '../Sidebar/Sidebar.css'
+import '../Sidebar/Sidebar.css';
 
 import { Link } from 'react-router-dom';
 import Logo from '../../Logo/Logo';
@@ -9,21 +9,51 @@ const Sidebar = () => {
   const [visibleA, setVisibleA] = useState(false);
   return (
     <>
-      <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul
+        className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
         <Link className="sidebar-brand" to="#">
           {/* <div className="sidebar-brand-icon rotate-n-15"> <i className="fas fa-laugh-wink"></i> </div> */}
-          <div className="sidebar-brand-text mx-3"><Logo></Logo></div>
+          <div className="sidebar-brand-text mx-3">
+            <Logo></Logo>
+          </div>
         </Link>
 
         <hr className="sidebar-divider my-0" />
         <div className="sidebar-heading"> Menu </div>
 
-        <li className="nav-item active"> <Link className="nav-link" to=""> <i className="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></Link> </li>
-        <li className="nav-item"> <Link className="nav-link" to="#"> <i className="fas fa-fw fa-chart-area"></i> <span>Lead</span> <span class="badge badge-secondary text-right">8</span></Link> </li>
-        <li className="nav-item"> <Link className="nav-link" to="#"> <i className="fas fa-fw fa-chart-area"></i> <span>Reports</span> </Link> </li>
-
-     
-
+        <li className="nav-item active">
+          {' '}
+          <Link className="nav-link" to="">
+            {' '}
+            <i className="fas fa-fw fa-tachometer-alt"></i>{' '}
+            <span>Dashboard</span>
+          </Link>{' '}
+        </li>
+        <li className="nav-item">
+          {' '}
+          <Link className="nav-link" to="#">
+            {' '}
+            <i className="fas fa-fw fa-chart-area"></i> <span>Lead</span>{' '}
+            <span class="badge badge-secondary text-right">8</span>
+          </Link>{' '}
+        </li>
+        <li className="nav-item">
+          {' '}
+          <Link className="nav-link" to="#">
+            {' '}
+            <i className="fas fa-fw fa-chart-area"></i> <span>Reports</span>{' '}
+          </Link>{' '}
+        </li>
+        <li className="nav-item">
+          {' '}
+          <Link className="nav-link" to="#">
+            {' '}
+            <i className="fas fa-fw fa-shopping-cart"></i> <span>Clients</span>{' '}
+            <span class="badge badge-secondary text-right">8</span>
+          </Link>{' '}
+        </li>
 
         {/* <li className="nav-item">
           <Link className={visible ? "nav-link" : "nav-link collapsed"} to="#" data-toggle="collapse" data-target="#collapseTwo" onClick={() => setVisible(!visible)}
@@ -40,7 +70,6 @@ const Sidebar = () => {
           </div>
         </li> */}
 
-
         {/* <li className="nav-item"> <Link className={visibleA ? "nav-link" : "nav-link collapsed"} to="#" data-toggle="collapse" onClick={() => setVisibleA(!visibleA)} data-target="#collapseUtilities"
           aria-expanded={visibleA ? "true" : "false"} aria-controls="collapseUtilities"> <i className="fas fa-fw fa-wrench"></i> <span>Utilities</span> </Link>
           <div id="collapseUtilities" className={visibleA ? "collapse show" : "collapse"} aria-labelledby="headingUtilities"
@@ -51,9 +80,7 @@ const Sidebar = () => {
           </div>
         </li> */}
 
-
         {/* <hr className="sidebar-divider" /> */}
-
 
         {/* <div className="sidebar-heading"> Addons </div>
 
@@ -76,19 +103,17 @@ const Sidebar = () => {
 
         <li className="nav-item"> <Link className="nav-link" to="tables.html"> <i className="fas fa-fw fa-table"></i> <span>Tables</span></Link> </li> */}
 
-
         <hr className="sidebar-divider d-none d-md-block" />
 
-
         <div className="text-center d-none d-md-inline">
-          <button className="rounded-circle border-0" id="sidebarToggle"></button>
+          <button
+            className="rounded-circle border-0"
+            id="sidebarToggle"
+          ></button>
         </div>
-
-
-
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

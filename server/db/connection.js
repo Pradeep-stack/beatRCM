@@ -2,9 +2,9 @@ let mysql = require('mysql');
 
 let connection = mysql.createConnection({
   host: 'localhost',
-  user: 'mobileshop_beatCRM',
-  password: 'News@123',
-  database: 'mobileshop_beatCRM',
+  user: 'root',
+  password: 'root',
+  database: 'beat_crm',
 });
 
 const connectDB = () => {

@@ -1,26 +1,23 @@
-import React from 'react'
-import Footer from './Footer/Footer'
-import Header from './Header/Header'
-import Siderbar from './Sidebar/Sidebar'
+import React from 'react';
+import Footer from './Footer/Footer';
+import Header from './Header/Header';
+import Siderbar from './Sidebar/Sidebar';
 
-const Dashboard = ({children}) => {
+const Dashboard = ({ children }) => {
   return (
     <>
-        <div id='wrapper'>
-            <Siderbar></Siderbar>
-<div id='content-wrapper'>
-  <Header></Header>
-  <div className="container-fluid">
-  <main>{children}</main>
-     
-  </div>
-  {/* <Footer></Footer> */}
-</div>
-
-
-</div>
+      <div id="wrapper">
+        <Siderbar></Siderbar>
+        <div id="content-wrapper">
+          <Header></Header>
+          <div className="container-fluid">
+            <main>{children}</main>
+          </div>
+          {/* <Footer></Footer> */}
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

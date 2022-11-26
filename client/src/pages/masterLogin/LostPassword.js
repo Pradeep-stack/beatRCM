@@ -4,7 +4,7 @@ import Logo from '../Logo/Logo';
 import '../login/login.css';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const LostPassword = () => {
   const initialValues = { user_email: '', password: '' };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -75,11 +75,6 @@ const Login = () => {
                 <div className="row d-flex align-items-center">
                   <div className="col-lg-6 offset-md-3">
                     <div className="p-3">
-                      <div className="text-center">
-                        <h1 className="h4 text-gray-900 mb-4">
-                          <Logo></Logo>
-                        </h1>
-                      </div>
                       <form className="user">
                         <div className="form-group">
                           <input
@@ -92,46 +87,6 @@ const Login = () => {
                           />
                           <p style={{ color: '#FF0000' }}>{formErrors.email}</p>
                         </div>
-                        <div className="form-group">
-                          <input
-                            type="password"
-                            name="password"
-                            className="form-control form-control-user"
-                            value={formValues.password}
-                            onChange={handleChange}
-                            placeholder="Password"
-                          />
-                          <p style={{ color: '#FF0000' }}>
-                            {formErrors.password}
-                          </p>
-                        </div>
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="form-group">
-                              <div className="custom-control custom-checkbox small">
-                                <input
-                                  type="checkbox"
-                                  className="custom-control-input"
-                                  id="customCheck"
-                                />
-                                <label
-                                  className="custom-control-label"
-                                  htmlFor="customCheck"
-                                >
-                                  Remember Me
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="forget-possword text-right">
-                              <Link to="/forgot-password" className="small">
-                                Lost Your Password?
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-
                         <button
                           type="submit"
                           className="btn btn-primary btn-user btn-block"
@@ -140,13 +95,6 @@ const Login = () => {
                           Log In
                         </button>
                       </form>
-
-                      {/* <div className="text-center">
-                        <Link to='/forgot-password' className="small">Forgot Password?</Link>
-                      </div> */}
-                      {/* <div className="text-center">
-                        <Link to='/register' className="small" >Create an Account!</Link>
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -159,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LostPassword;
