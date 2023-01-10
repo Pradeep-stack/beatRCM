@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Images } from '../../../Images';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
@@ -9,10 +9,18 @@ const Header = () => {
   const [message, setMessage] = useState(false);
   const navigation = useNavigate();
 
+  const [userType, setUserType] = useState('');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setUserType(user.results[0].user_type);
+    }
+  }, []);
   const clearlocalStorage = () => {
-    // alert("hiwww")
     localStorage.removeItem('user');
     window.location.reload(false);
+    navigation.push('/');
   };
 
   return (
@@ -26,66 +34,78 @@ const Header = () => {
             {' '}
             <i className="fas fa-bars"></i>{' '}
           </button>
-          <div className="lft-profile d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100">
-            <div className="user-name">Hey! Aryan Mishra</div>
-            <small>Let’s check your store today</small>
-          </div>
-          <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 navbar-search">
-            <div className="input-group">
-              <div className="input-group-append">
-                <button className="btn" type="button">
-                  {' '}
-                  <i className="fas fa-search fa-sm"></i>{' '}
-                </button>
-              </div>
-              <input
-                type="text"
-                className="form-control bg-light border-0 small"
-                placeholder="Search..."
-                aria-label="Search"
-                aria-describedby="basic-addon2"
-              />
+          {userType === 'System Admin' && (
+            <div className="lft-profile d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100">
+              <div className="user-name">Welcome to beat CRM</div>
+              <small>Good Afternnoon, Let’s check your work today.</small>
             </div>
-          </form>
+          )}
+          {userType === 'Client Admin' && (
+            <div className="lft-profile d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100">
+              <div className="user-name">Hey! Arjun Nanda</div>
+              <small>Good Afternnoon, Let’s check your work today.</small>
+            </div>
+          )}
+          {userType === 'Client Admin' && (
+            <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 navbar-search">
+              <div className="input-group">
+                <div className="input-group-append">
+                  <button className="btn" type="button">
+                    {' '}
+                    <i className="fas fa-search fa-sm"></i>{' '}
+                  </button>
+                </div>
+                <input
+                  type="text"
+                  className="form-control bg-light border-0 small"
+                  placeholder="Search..."
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                />
+              </div>
+            </form>
+          )}
 
           <ul className="navbar-nav">
-            <li className="nav-item dropdown no-arrow d-sm-none">
-              {' '}
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="searchDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+            {userType === 'Client Admin' && (
+              <li className="nav-item dropdown no-arrow d-sm-none">
                 {' '}
-                <i className="fas fa-search fa-fw"></i>{' '}
-              </a>
-              <div
-                className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown"
-              >
-                <form className="form-inline mr-auto w-100 navbar-search">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      className="form-control bg-light border-0 small"
-                      placeholder="Search for..."
-                      aria-label="Search"
-                      aria-describedby="basic-addon2"
-                    />
-                    <div className="input-group-append">
-                      <button className="btn btn-primary" type="button">
-                        {' '}
-                        <i className="fas fa-search fa-sm"></i>{' '}
-                      </button>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {' '}
+                  <i className="fas fa-search fa-fw"></i>{' '}
+                </a>
+                <div
+                  className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form className="form-inline mr-auto w-100 navbar-search">
+                    <div className="input-group">
+                      <input
+                        type="text"
+                        className="form-control bg-light border-0 small"
+                        placeholder="Search for..."
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div className="input-group-append">
+                        <button className="btn btn-primary" type="button">
+                          {' '}
+                          <i className="fas fa-search fa-sm"></i>{' '}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-            </li>
+                  </form>
+                </div>
+              </li>
+            )}
 
             <li
               className={
@@ -289,7 +309,6 @@ const Header = () => {
               </div>
             </li>
             <div className="topbar-divider d-none d-sm-block"></div>
-
             <li
               className={
                 user

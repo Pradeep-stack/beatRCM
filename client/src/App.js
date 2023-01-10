@@ -9,35 +9,35 @@ import ForgotePossword from './components/ForgotePassword/ForgotePossword';
 import Dashboard from './components/Dashboard/Dashboard';
 import ClientsList from './pages/systemAdmin/ClientsList';
 import Home from './pages/home/Home';
+import SystemAdmin from './pages/systemAdmin/SystemAdmin';
 function App() {
   const [data, setUser] = useState('');
+  const [userType, setUserType] = useState('');
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setUser(user);
+      setUserType(user.results[0].user_type);
     }
   }, []);
+
   return (
     <>
       <BrowserRouter>
         {data?.status === 'success' ? (
           <Dashboard>
             <Routes>
-              <Route path="/" element={<Home></Home>}></Route>
-              <Route
-                path="/client-list"
-                element={<ClientsList></ClientsList>}
-              ></Route>
+              {userType === 'System Admin' ? (
+                <Route path="/" element={<SystemAdmin />}></Route>
+              ) : (
+                <Route path="/" element={<Home></Home>}></Route>
+              )}
             </Routes>
           </Dashboard>
         ) : (
           <Routes>
             <Route path="/" element={<Login></Login>}></Route>
-            <Route
-              path="/forgot-password"
-              element={<ForgotePossword></ForgotePossword>}
-            ></Route>
             <Route
               path="/forgot-password"
               element={<ForgotePossword></ForgotePossword>}

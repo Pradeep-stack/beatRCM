@@ -5,7 +5,7 @@ import '../login/login.css';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const initialValues = { user_email: '', password: '' };
+  const initialValues = { email: '', password: '' };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isFormSumit, setIsFormSubmit] = useState();
@@ -56,8 +56,8 @@ const Login = () => {
     const errors = {};
     console.log('error data', values);
     //const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (values.user_email === '') {
-      errors.user_email = 'Email is required';
+    if (values.email === '') {
+      errors.email = 'Email is required';
     }
     if (!values.password) {
       errors.password = 'Password is required';
@@ -84,7 +84,7 @@ const Login = () => {
                         <div className="form-group">
                           <input
                             type="email"
-                            name="user_email"
+                            name="email"
                             className="form-control form-control-user"
                             value={formValues.email}
                             onChange={handleChange}

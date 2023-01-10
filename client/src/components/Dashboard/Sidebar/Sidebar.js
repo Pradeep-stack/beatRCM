@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import '../Sidebar/Sidebar.css';
 
@@ -7,6 +7,15 @@ import Logo from '../../Logo/Logo';
 const Sidebar = () => {
   const [visible, setVisible] = useState(false);
   const [visibleA, setVisibleA] = useState(false);
+  const [userType, setUserType] = useState('');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setUserType(user.results[0].user_type);
+    }
+  }, []);
+
   return (
     <>
       <ul
@@ -23,38 +32,47 @@ const Sidebar = () => {
         <hr className="sidebar-divider my-0" />
         <div className="sidebar-heading"> Menu </div>
 
-        <li className="nav-item active">
-          {' '}
-          <Link className="nav-link" to="">
+        {userType === 'Client Admin' && (
+          <li className="nav-item active">
             {' '}
-            <i className="fas fa-fw fa-tachometer-alt"></i>{' '}
-            <span>Dashboard</span>
-          </Link>{' '}
-        </li>
-        <li className="nav-item">
-          {' '}
-          <Link className="nav-link" to="#">
+            <Link className="nav-link" to="">
+              {' '}
+              <i className="fas fa-fw fa-tachometer-alt"></i>{' '}
+              <span>Dashboard</span>
+            </Link>{' '}
+          </li>
+        )}
+        {userType === 'Client Admin' && (
+          <li className="nav-item">
             {' '}
-            <i className="fas fa-fw fa-chart-area"></i> <span>Lead</span>{' '}
-            <span class="badge badge-secondary text-right">8</span>
-          </Link>{' '}
-        </li>
-        <li className="nav-item">
-          {' '}
-          <Link className="nav-link" to="#">
+            <Link className="nav-link" to="#">
+              {' '}
+              <i className="fas fa-fw fa-chart-area"></i> <span>Lead</span>{' '}
+              <span class="badge badge-secondary text-right">8</span>
+            </Link>{' '}
+          </li>
+        )}
+        {userType === 'Client Admin' && (
+          <li className="nav-item">
             {' '}
-            <i className="fas fa-fw fa-chart-area"></i> <span>Reports</span>{' '}
-          </Link>{' '}
-        </li>
-        <li className="nav-item">
-          {' '}
-          <Link className="nav-link" to="#">
-            {' '}
-            <i className="fas fa-fw fa-shopping-cart"></i> <span>Clients</span>{' '}
-            <span class="badge badge-secondary text-right">8</span>
-          </Link>{' '}
-        </li>
+            <Link className="nav-link" to="#">
+              {' '}
+              <i className="fas fa-fw fa-chart-area"></i> <span>Reports</span>{' '}
+            </Link>{' '}
+          </li>
+        )}
 
+        {userType === 'System Admin' && (
+          <li className="nav-item">
+            {' '}
+            <Link className="nav-link" to="/">
+              {' '}
+              <i className="fas fa-fw fa-shopping-cart"></i>{' '}
+              <span>Clients</span>{' '}
+              <span class="badge badge-secondary text-right">8</span>
+            </Link>{' '}
+          </li>
+        )}
         {/* <li className="nav-item">
           <Link className={visible ? "nav-link" : "nav-link collapsed"} to="#" data-toggle="collapse" data-target="#collapseTwo" onClick={() => setVisible(!visible)}
             aria-expanded={visible ? "true" : "false"} aria-controls="collapseTwo"> <i className="fas fa-fw fa-cog"></i> <span>User</span> </Link>

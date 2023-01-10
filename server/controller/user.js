@@ -4,17 +4,17 @@ const connection = require('../db/connection');
 
 module.exports.userLogin = async (req, res) => {
   //const data = req.body;
-  const { user_email, password } = req.body;
+  const { email, password } = req.body;
   console.log(req.body);
-  if (!user_email || !password) {
+  if (!email || !password) {
     return res.status(404).send('Invalid Detail');
   }
   connection.query(
-    `SELECT * FROM user WHERE user_email= ? AND password= ?`,
-    [user_email, password],
+    `SELECT * FROM user WHERE email= ? AND password= ?`,
+    [email, password],
     (err, results, fields) => {
       if (err) {
-        res.status(404,'error in api', err.message);
+        res.status(404, 'error in api', err.message);
       } else {
         res.status(200).send({ status: 'success', results: results });
       }
